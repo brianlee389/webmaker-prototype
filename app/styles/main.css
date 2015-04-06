@@ -1,0 +1,76 @@
+.add-list-item {
+    text-align: center;
+    position: absolute;
+    bottom:30px;
+    right:30px;
+    background-color: lightgrey;
+    border-radius: 75px;
+    color: white;
+    height: 75px;
+    width: 75px;
+    font-size: 75px;
+    cursor: pointer;
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.preview-image {
+    width: 50%;
+    height: 300px;
+}
+
+.preview {
+    padding: 3px;
+    text-align: center;
+}
+
+.page {
+    background-color: lightgrey;
+    padding: 5px;
+    height: 700px;
+    width: 100%;
+}
+
+.mobile-li {
+    color: gray;
+    background-color: white;
+    list-style-type: none;
+    font-size: 1.4em;
+    height: 35px;
+    margin:3px;
+    margin-bottom: 5px;
+    padding: 7px; 
+    text-align: center;
+    width:98%;
+}
+
+.list-container {
+    width: 100%;
+}
+
+.mobile-list {
+    padding: 1px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.scroll-hider {
+    width: 100%;
+    padding-right: 20px;
+    height: 325px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
+
+.hover-item {
+    background-color: ghostwhite;
+}
+
+body{
+    /*overflow: hidden;*/
+}

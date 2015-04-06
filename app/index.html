@@ -1,0 +1,79 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>html_prototype</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="scripts/jquery.nestable.js"></script>
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">-->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/jquery-nestable.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+      <div class="page">
+            <div class="page-title mobile-li">Image Styles</div>
+            <div class="preview">
+                <img class="preview-image" src="http://www.wpclipart.com/animals/cats/cat_photos/cat_face_striped_tabby.png">
+            </div>
+        <!--    <div class="lists-container"> 
+                <div class="scroll-hider">
+                    <ol class="mobile-list">
+                        <li class="mobile-li"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+                        <li class="mobile-li"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+                    </ol>
+                </div>
+            </div>-->
+
+            <div class="dd">
+                <ol class="dd-list">
+                    <li class="dd-item" data-id="1">
+                        <div class="dd-handle mobile-li">Item 1</div>
+                    </li>
+                    <li class="dd-item" data-id="2">
+                        <div class="dd-handle mobile-li">Item 2</div>
+                    </li>
+                    <li class="dd-item" data-id="3">
+                        <div class="dd-handle mobile-li">Item 3</div>
+                        <ol class="dd-list">
+                            <li class="dd-item" data-id="4">
+                                <div class="dd-handle mobile-li">Item 4</div>
+                            </li>
+                            <li class="dd-item" data-id="5">
+                                <div class="dd-handle mobile-li">Item 5</div>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="add-list-item">+</div>
+      </div>
+    
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/plugins.js -->
+      <!--<script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>-->
+    <!-- endbuild -->
+
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
