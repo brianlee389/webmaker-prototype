@@ -12,6 +12,8 @@
     <script src="scripts/jquery.nestable.js"></script>
     <script type="text/javascript" src="scripts/jquery.the-modal.js"></script>
     <script type="text/javascript" src="scripts/selectordie.js"></script>
+    <script type="text/javascript" src="scripts/simple-expand.min.js"></script>
+    <script src="scripts/main.js"></script>
 
     <link rel="stylesheet" type="text/css" href="styles/the-modal.css">
     <link rel="stylesheet" type="text/css" href="styles/selectordie.css">
@@ -20,37 +22,31 @@
   </head>
   <body>
       <div class="page">
-            <div class="page-title mobile-li">Image Styles</div>
-            <div class="preview">
-                
-            </div>
+        <div class="page-title mobile-li">Image Styles</div>
+        <div class="preview hide-scroll">
+            <div class="scrollable"></div>                
+        </div>
 
-            <div class="dd hide-scroll">
-                <div class="scrollable">
-                    <ol class="dd-list">
-                        <li class="dd-item" data-id="1">
-                            <div class="dd-handle mobile-li">&lt; a &gt;</div>
-                        </li>
-                        <li class="dd-item" data-id="2">
-                            <div class="dd-handle mobile-li">&lt; a &gt;</div>
-                            <ol class="dd-list">
-                                <li class="dd-item" data-id="3">
-                                    <div class="dd-handle mobile-li">&lt; img &gt;</div>
-                                </li>
-                            </ol>
-                            <div class="mobile-li mobile-li-close">close</div>
-                        </li>
-                        <li class="dd-item" data-id="4">
-                            <div class="dd-handle mobile-li">&lt; img &gt;</div>
-                        </li>
-                    </ol>
-                </div>
+        <div class="dd hide-scroll">
+            <div class="scrollable">
+                <ol class="dd-list">
+                    <li class="dd-item" data-id="1">
+                        <div class="mobile-li">
+                            <span class="dd-handle">&lt; a &gt;</span>
+                            <span class="edit-tag">Edit</span></div>
+                        <div class="content mobile-li">
+                            <button class="circle-button">link</button>
+                            <button class="circle-button">text</button>
+                        </div>
+                    </li>
+                </ol>
             </div>
+        </div>
 
-            <div class="add-tag-button circle-button">+</div>
-            <div class="remove-tag-button circle-button">-</div>
+        <div class="add-tag-button circle-button">+</div>
+        <div class="remove-tag-button circle-button">-</div>
       </div>
-      <div class="modal" id="terms-of-service" style="display: none">
+      <div class="modal" style="display: none">
         <a href="#" class="close">×</a>
         <h2>HTML Tags</h2>
         <select class="select-tags">
@@ -63,6 +59,18 @@
             <button class="create">Create</button>
         </p>
       </div>
-    <script src="scripts/main.js"></script>
-</body>
+      
+    </body>
 </html>
+
+                    <!--<li class="dd-item" data-id="2">
+                        <div class="dd-handle mobile-li">&lt; a &gt;</div>
+                        <div class="mobile-li">
+                        </div>
+                        <ol class="dd-list">
+                            <li class="dd-item" data-id="3">
+                                <div class="dd-handle mobile-li">&lt; img &gt;</div>
+                            </li>
+                        </ol>
+                        <div class="mobile-li mobile-li-close">close</div>
+                    </li>-->

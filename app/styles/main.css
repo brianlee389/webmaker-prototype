@@ -17,11 +17,11 @@ body{
 .circle-button {
     text-align: center;
     background-color: lightgrey;
-    border-radius: 75px;
+    border-radius: 40px;
     color: white;
-    height: 75px;
-    width: 75px;
-    font-size: 75px;
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -56,7 +56,7 @@ body{
 .hide-scroll {
     overflow: hidden;
     width: 100%;
-    height: 100%;
+/*    height: 100%;*/
 }
 
 .scrollable {
@@ -115,4 +115,19 @@ body{
 
 .create:active {
     background-color:darkgrey;
+}
+
+.edit-tag {
+    float:right;
+    margin-right: 5px;
+    height:100%;
+}
+.content {
+    display:none;
+}
+
+.dd-handle {
+    height:100%;
+    width: 70%;
+    float:left;
 }
