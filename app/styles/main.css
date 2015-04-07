@@ -1,8 +1,21 @@
-.add-list-item {
-    text-align: center;
+body{
+    overflow: hidden;
+}
+
+.add-tag-button {
     position: absolute;
     bottom:30px;
-    right:30px;
+    right:30px;    
+}
+
+.remove-tag-button {
+    position: absolute;
+    bottom:30px;
+    left:30px;
+}
+
+.circle-button {
+    text-align: center;
     background-color: lightgrey;
     border-radius: 75px;
     color: white;
@@ -10,7 +23,6 @@
     width: 75px;
     font-size: 75px;
     cursor: pointer;
-    
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -19,14 +31,40 @@
     user-select: none;
 }
 
-.preview-image {
-    width: 50%;
-    height: 300px;
+.circle-button:active {
+    background-color: #BCBCBC;
 }
 
-.preview {
-    padding: 3px;
+.mobile-li {
+    color: gray;
+    background-color: white;
+    list-style-type: none;
+    font-size: 1.4em;
+    height: 36px;
+    margin:3px;
+    margin-bottom: 5px;
+    padding: 7px; 
     text-align: center;
+    /*border: 2px solid lightgray;
+    */
+}
+
+.mobile-li-close {
+    height: 18px;
+}
+
+.hide-scroll {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.scrollable {
+    width: 100%;
+    padding-right: 20px;
+    height: 325px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .page {
@@ -36,41 +74,45 @@
     width: 100%;
 }
 
-.mobile-li {
-    color: gray;
-    background-color: white;
-    list-style-type: none;
-    font-size: 1.4em;
-    height: 35px;
-    margin:3px;
-    margin-bottom: 5px;
-    padding: 7px; 
+.preview {
+    padding: 3px;
     text-align: center;
-    width:98%;
 }
 
-.list-container {
-    width: 100%;
+.preview-image {
+    width: 50%;
+    height: 300px;
 }
 
-.mobile-list {
-    padding: 1px;
-    margin-top: 0;
-    margin-bottom: 0;
+.modal {
+    background: white;
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
 }
 
-.scroll-hider {
-    width: 100%;
-    padding-right: 20px;
-    height: 325px;
-    overflow-y: scroll;
-    overflow-x:hidden;
+.modal .close {
+    float: right;
+    text-decoration: none;
+    font-size: 40px;
+    cursor: pointer;
+    color:black;
 }
 
-.hover-item {
-    background-color: ghostwhite;
+.select-tags {
+    margin-bottom: 5px;
 }
 
-body{
-    /*overflow: hidden;*/
+.create {
+    padding: 8px;
+    font-size: 16px;
+    color:white;
+    background-color: lightgrey;
+    border:none;
+    text-shadow: 0px 0px 1px lightgrey;
+    outline: none;
+}
+
+.create:active {
+    background-color:darkgrey;
 }
