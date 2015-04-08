@@ -2,7 +2,7 @@ $(function() {
     $('.dd').nestable();
 
     // custombox modal
-    
+    console.log(getTag(1));
     // attach close button handler
     $('.modal .close').on('click', function(e){
         e.preventDefault();
@@ -21,17 +21,14 @@ $(function() {
     
     $('.edit-tag').simpleexpand();
     
-    function createTag(tagname) {
-        return "< " + tagname + " >"
-    }
-    
     // a lot more abstractions can be made, but this is a prototype
     // so I didn't care
     $(".create").click(function() {
         var selectVal = $(".select-tags").val();
         var innerdiv = $('<div></div>').addClass('mobile-li');
         
-        var spanleft = $('<span></span>').addClass('dd-handle').text(createTag(selectVal));
+        var spanleft = $('<span></span>').addClass('dd-handle').text(getTag(parseInt(selectVal)));
+        
         var spanright = $('<span></span>').addClass('edit-tag').text('Edit');
         
         innerdiv.append(spanleft);
@@ -50,6 +47,11 @@ $(function() {
         var litag = $('<li></li>').addClass("dd-item").attr("data-id", newid).append(innerdiv);
         litag.append(expandableContent);
         
+        // sample attributes
+        litag.attr("data-ref", "http://www.google.com");
+        litag.attr("data-tag", selectVal);
+        litag.attr("data-text", "HEre is some sample text");
+        
         var ddlist = $('.dd').find('.dd-list').first();
         ddlist.append(litag);
         
@@ -57,38 +59,81 @@ $(function() {
         $(spanright).simpleexpand();
     });
     
-
-                        
-                        
-    
-    /* Rendering the preview */
-    var previewTag = $(".preview").children(".scrollable");
-    var initialList = $('.dd').children(".scrollable").children(".dd-list");
-    
-    function renderList(addto, additem) {
-        var itemlist = additem.children(".dd-item");
-        var listsize = itemlist.length;
-        for(var i = 0; i < itemsize; i++) {
-            var item = itemlist[i];
-            var data = item.find(".dd-handle").first();
-            //create the tag from the data
-            
-            var innerlist = item.find(".dd-list");
-            if(innerlist.length > 0) {
-                // pass the created tag to renderList and add the rest of the inner tags
-                //renderList(innerlist)
-            }
-            
-            // add the additem's children to addto
-            // addto.append(additem.children)
+    function getTag(tagnum) {
+        
+        switch(tagnum) {
+            case 0:
+                return "<a>";
+            case 1:
+                return "<img>";
+            case 2:
+                return "<p>";
+            case 3:
+                return "<div>";
+            case 4:
+                return "<h1>";
         }
     }
     
+    function createPreviewTag(item) {
+        var tagref = item.attr("data-ref");
+        var tagtype = parseInt(item.attr("data-tag"));
+        var tagtext = item.attr("data-text");
+        
+        var createdtag = $(getTag(tagtype));
+        
+        // dealing with tags that need references
+        if(tagtype == 0) {
+            createdtag.attr("href", tagref);
+        } else if(tagtype == 1) {
+            createdtag.attr("src", tagref);
+        }
+        
+        createdtag.text(tagtext);
+        
+        return createdtag;
+    }
+    
+    /* Rendering the preview */
+    function renderHtml() {
+    /*
+        This traverses the the dd-list of dd-items using
+        breadth first search and creates and adds the tags 
+        into the preview html.
+        -addto should be a tag that is created to be put into
+        the preview html.
+        -additem should be a <ol class="dd-list">
+    */
+        function renderList(addto, additem) {
+            var childitems = additem.children(".dd-item");
+            var listsize = childitems.length;
 
-    // renderList(previewTag, initialList)
+            for(var i = 0; i < listsize; i++) {
+                var item = childitems[i];
+                console.log(item);
+                //create the child tag from the data
+                var createdtag = createPreviewTag($(item));
+
+                // recursively visit each dd-item tag in the list
+                var innerlist = $(item).find(".dd-list");
+                if(innerlist.length > 0) {
+                    renderList(createdtag, innerlist);
+                }
+                // add the additem's children to the created tag before the forloop
+                // createdtag.append(additem.all the children)
+                addto.append(createdtag);
+            }      
+        } // end renderList function
+        
+        var previewTag = $(".preview").children(".scrollable");
+        var initialList = $('.dd').children(".scrollable").children(".dd-list");
+        previewTag.html("");
+        renderList(previewTag, initialList);
+    } // renderHtml function
     
+    renderHtml();
     
-    //.children("li")
+    $(".remove-tag-button").click(function() {
+        renderHtml();
+    });
 });
-
-

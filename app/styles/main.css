@@ -1,5 +1,6 @@
 body{
     overflow: hidden;
+    margin: 0px;
 }
 
 .add-tag-button {
@@ -81,6 +82,8 @@ body{
 .preview {
     padding: 3px;
     text-align: center;
+    background-color: white;
+    border: 1px solid black;
 }
 
 .preview-image {
