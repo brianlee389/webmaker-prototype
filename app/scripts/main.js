@@ -107,20 +107,21 @@ $(function() {
         function renderList(addto, additem) {
             var childitems = additem.children(".dd-item");
             var listsize = childitems.length;
-
+            console.log("Add: " + addto);
+            console.log(childitems);
             for(var i = 0; i < listsize; i++) {
                 var item = childitems[i];
-                console.log(item);
+                
                 //create the child tag from the data
                 var createdtag = createPreviewTag($(item));
 
                 // recursively visit each dd-item tag in the list
-                var innerlist = $(item).find(".dd-list");
+                var innerlist = $(item).find(".dd-list").first();
                 if(innerlist.length > 0) {
                     renderList(createdtag, innerlist);
                 }
                 // add the additem's children to the created tag before the forloop
-                // createdtag.append(additem.all the children)
+                console.log("appended");
                 addto.append(createdtag);
             }      
         } // end renderList function
