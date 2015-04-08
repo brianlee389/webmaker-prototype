@@ -29,16 +29,13 @@ $(function() {
     // so I didn't care
     $(".create").click(function() {
         var selectVal = $(".select-tags").val();
-        var insidediv = $('<div></div>').addClass('mobile-li');
+        var innerdiv = $('<div></div>').addClass('mobile-li');
         
         var spanleft = $('<span></span>').addClass('dd-handle').text(createTag(selectVal));
         var spanright = $('<span></span>').addClass('edit-tag').text('Edit');
         
-        insidediv.append(spanleft);
-        insidediv.append(spanright);
-        
-        var newid = $('.dd-item').size() + 1;
-        var litag = $('<li></li>').addClass("dd-item").attr("data-id", newid).append(insidediv);
+        innerdiv.append(spanleft);
+        innerdiv.append(spanright);
 
         var expandableContent = $("<div></div>").addClass("content mobile-li");
         
@@ -49,8 +46,12 @@ $(function() {
         expandableContent.append(buttonLink);
         expandableContent.append(buttonText);
         
+        var newid = $('.dd-item').size() + 1;
+        var litag = $('<li></li>').addClass("dd-item").attr("data-id", newid).append(innerdiv);
+        litag.append(expandableContent);
+        
         var ddlist = $('.dd').find('.dd-list').first();
-        ddlist.append(litag).fadeIn();
+        ddlist.append(litag);
         
         // setup the expand
         $(spanright).simpleexpand();
@@ -77,12 +78,13 @@ $(function() {
                 // pass the created tag to renderList and add the rest of the inner tags
                 //renderList(innerlist)
             }
+            
+            // add the additem's children to addto
+            // addto.append(additem.children)
         }
     }
     
-    $( "#accordion" ).accordion({
-        collapsible: true
-    });
+
     // renderList(previewTag, initialList)
     
     

@@ -14,21 +14,25 @@ body{
     left:30px;
 }
 
-.circle-button {
-    text-align: center;
-    background-color: lightgrey;
-    border-radius: 40px;
+.button-text {
     color: white;
-    height: 40px;
-    width: 40px;
-    font-size: 20px;
-    cursor: pointer;
+    text-align: center;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.circle-button {
+    text-align: center;
+    background-color: lightgrey;
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+    cursor: pointer;
 }
 
 .circle-button:active {
