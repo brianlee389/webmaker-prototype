@@ -1,73 +1,143 @@
 $(function() {
+    /* Initialize Webpage */
     $('.dd').nestable();
-
-    // custombox modal
-    console.log(getTag(1));
-    // attach close button handler
-    $('.modal .close').on('click', function(e){
-        e.preventDefault();
-        $.modal().close();
-    });
-
-    // open modal with default options or options set with init
-    // content will be taken from #login
-    $(".add-tag-button").click(function() {
-        $('.modal').modal().open();
-    });
-    
+    $('.edit-tag').simpleexpand();
     $(".select-tags").selectOrDie({
         placeholder: "Select a HTML tag"
     });
     
-    $('.edit-tag').simpleexpand();
+    // render the html from the items in tag with clas dd to preview
+    renderHtml();
+    setEditTextButton();
+    /* Initialize Webpage end */
     
-    // a lot more abstractions can be made, but this is a prototype
-    // so I didn't care
-    $(".create").click(function() {
+    // used to map tags to id numbers
+    // Purpose: easier to see what tags are needed
+    var tagEnum = {
+        A: 0,
+        IMG: 1,
+        P: 2,
+        DIV: 3,
+        SPAN: 4,
+        I: 5,
+        BUTTON: 6,
+        LI: 7
+    };
+    
+    /* Create event handlers */
+    // wire close button for modal
+    $('.modal .close').on('click', function(e){
+        e.preventDefault();
+        $.modal().close();
+        $.find(".selected-edit-text").first().removeClass("selected-edit-text");
+    });
+    
+    // open modal event
+    $(".add-tag-button").click(function() {
+        $('.modal.create-tag').modal().open();
+    });
+    
+    /* 
+    This event refers to editing the text in the tag
+    */
+    function setEditTextButton() {
+        $('.modal.insert-text .close').on('click', function(e){
+            e.preventDefault();
+            $.modal().close();
+        });
+        
+        $(".circle-button.fi-pencil").click(function() {
+            var dditem = $(this).addClass("selected-edit-text");
+            
+            $('.modal.insert-text').modal().open();
+        });    
+    }
+    
+    // TODO: remove this when automatic re-rendering
+    // is added to this prototype
+    $(".remove-tag-button").click(function() {
+        renderHtml();
+    });
+    
+    // TODO: refactoring part 2, finished part 1 
+    // useing a simple factory method
+    $(".modal.create-tag .button").click(function() {
         // retrieve value from select tag
-        var selectVal = $(".select-tags").val();
+        var selectVal = parseInt($('.select-tags').val());
+        var handlediv = createTag(tagEnum.DIV, 'dd-handle dd3-handle');
+        var innerdiv = createTag(tagEnum.DIV, 'dd3-content mobile-li');
+        var nameTag = createTag(tagEnum.SPAN, 'name-tag').text(getTag(selectVal));
+        var editIcon = createTag(tagEnum.I, 'edit-tag fi-page-edit');
+        var expandableContent = createTag(tagEnum.DIV, "content mobile-li");
         
-        var handlediv = $('<div></div>').addClass('dd-handle dd3-handle');
-        var innerdiv = $('<div></div>').addClass('dd3-content mobile-li');
+        /*var icon = createTag(tagEnum.I, "large");
+        var linkIcon = icon.clone().addClass("fi-link");
+        var pencilIcon = icon.clone().addClass("fi-pencil");
+        */
+        var button = createTag(tagEnum.DIV, 'circle-button');
+        /* var buttonLink = button.clone().append(linkIcon);
+        var buttonText = button.clone().append(pencilIcon);
+        */
+        var buttonLink = button.clone().addClass('fi-link large');
+        var buttonText = button.clone().addClass('fi-pencil large');
         
-        var spanleft = $('<span></span>').addClass('name-tag').text(getTag(parseInt(selectVal)));
         
-        var spanright = $('<span></span>').addClass('edit-tag').text('Edit');
+        var newid = $('.dd-item').size() + 1;
+        var litagAttr = {
+            "data-id" : newid,
+            "data-ref" : "www.google.com",
+            "data-tag" : selectVal,
+            "data-text" : "Hello World!"    
+        }
         
-        innerdiv.append(spanleft);
-        innerdiv.append(spanright);
-
-        var expandableContent = $("<div></div>").addClass("content mobile-li");
+        var litag = createTag(tagEnum.LI, "dd-item dd3-item").attr(litagAttr);
+        var ddlist = $('.dd').children(".scrollable").children('.dd-list').first();
         
-        var button = $('<button></button>').addClass('circle-button');
-        var buttonText = button.clone().text("text");
-        var buttonLink = button.clone().text("link");
+        /* Insert the nested tags */
+        innerdiv.append(nameTag);
+        innerdiv.append(editIcon);
         
         expandableContent.append(buttonLink);
         expandableContent.append(buttonText);
         
-        var newid = $('.dd-item').size() + 1;
-        var litag = $('<li></li>').addClass("dd-item dd3-item").attr("data-id", newid);
-        
-        // adding the 3 divs into the dd-item
         litag.append(handlediv)
             .append(innerdiv)
             .append(expandableContent);
         
-        // sample attributes
-        litag.attr("data-ref", "http://www.google.com");
-        litag.attr("data-tag", selectVal);
-        litag.attr("data-text", "HEre is some sample text");
-        
-        var ddlist = $('.dd').find('.dd-list').first();
         ddlist.append(litag);
         
-        // setup the expand
-        $(spanright).simpleexpand();
+        // setup the simpleexpand
+        $(editIcon).simpleexpand();
+       
+        // reset the event handler for editing link
+        /*$(".circle-button.fi-pencil").click(function() {
+            
+            var dditem = $(this).parent("dd-item").first().addClass("selected-edit-text");
+            console.log(dditem);
+            $('.modal.insert-text').modal().open();
+        });
+        */
+        
+        setEditTextButton();
     });
     
-    function getTag(tagnum) {
+    // TODO: rendering the text
+    // insert text event
+    $(".modal.insert-text .button").click(function() {
+        var value = $(this).parent().find("input").first().val();
         
+        var selecteditem = $().find(".selected-edit-text");
+        selecteditem.closest(".dd-item").attr("data-text", value);
+        selecteditem.removeClass("selected-edit-text");
+        
+        renderHtml();
+        $.modal().close();
+    });
+    
+    /* End Event Handlers */
+    
+    /* Start Helper Function definition */
+    function getTag(tagnum) {
         switch(tagnum) {
             case 0:
                 return "<a>";
@@ -78,10 +148,30 @@ $(function() {
             case 3:
                 return "<div>";
             case 4:
-                return "<h1>";
+                return "<span>";
+            case 5:
+                return "<i>";
+            case 6:
+                return "<button>";
+            case 7:
+                return "<li>"
+            default:
+                console.log("INVALID TAG NUMBER");
+                return "<div>";
         }
     }
     
+    // creates a tag with classess
+    function createTag(tagnum, classes) {
+        var createdTag = $(getTag(tagnum));
+        if(classes) {
+            createdTag.addClass(classes);
+        }
+        
+        return createdTag;
+    }
+    
+    // this creates a tag to be inserted into the preview section
     function createPreviewTag(item) {
         var tagref = item.attr("data-ref");
         var tagtype = parseInt(item.attr("data-tag"));
@@ -134,13 +224,12 @@ $(function() {
         
         var previewTag = $(".preview").children(".scrollable");
         var initialList = $('.dd').children(".scrollable").children(".dd-list");
+        
+        // this resets the preview to empty html
         previewTag.html("");
+        // render the tags into the preview
         renderList(previewTag, initialList);
-    } // renderHtml function
+    } // renderHtml end function
     
-    renderHtml();
-    
-    $(".remove-tag-button").click(function() {
-        renderHtml();
-    });
+    /* End Helper Function definition */
 });

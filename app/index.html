@@ -37,13 +37,16 @@
                             <i class="edit-tag fi-page-edit"></i>
                         </div>
                         <div class="content mobile-li">
-                            <div class="circle-button">
-                                <i class="fi-link large"></i>
+                            <!--<div class="circle-button">
+                                <i class="large fi-link"></i>
                             </div>
                             <div class="circle-button">
-                                <i class="fi-pencil large"></i>
+                                <i class="large fi-pencil"></i>
+                            </div>-->
+                            <div class="circle-button fi-link large">
                             </div>
-                            
+                            <div class="circle-button fi-pencil large">
+                            </div>
                         </div>
                     </li>
                 </ol>
@@ -57,7 +60,7 @@
             <span class="button-text">-</span>
         </div>
       </div>
-      <div class="modal" style="display: none">
+      <div class="modal create-tag" style="display: none">
         <a href="#" class="close">×</a>
         <h2>HTML Tags</h2>
         <select class="select-tags">
@@ -68,7 +71,15 @@
           <option value="4">h1</option>
         </select>
         <p>
-            <button class="create">Create</button>
+            <button class="button">Create</button>
+        </p>
+      </div>
+      <div class="modal insert-text" style="display: none">
+        <a href="#" class="close">×</a>
+        <h2>Insert text into tag</h2>
+        <p>
+            <input type="text" name="edit-text"></input>
+            <button class="button">Submit</button>
         </p>
       </div>
       

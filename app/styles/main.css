@@ -1,6 +1,7 @@
 body{
     overflow: hidden;
-    margin: 0px;
+    margin: 8px;
+    padding: 8px;
 }
 
 .add-tag-button {
@@ -76,10 +77,12 @@ body{
 }
 
 .preview {
-    padding: 3px;
     text-align: center;
     background-color: white;
-    border: 1px solid black;
+    height:325px;
+    overflow-y: scroll;
+    width: 1246px;
+    border: 1px dotted black;
 }
 
 .preview-image {
@@ -106,7 +109,7 @@ body{
     margin-bottom: 5px;
 }
 
-.create {
+.button {
     padding: 8px;
     font-size: 16px;
     color:white;
@@ -115,7 +118,7 @@ body{
     text-shadow: 0px 0px 1px lightgrey;
     outline: none;
 }
-.create:active {
+.button:active {
     background-color:darkgrey;
 }
 
@@ -136,9 +139,15 @@ body{
     display:none;
 }
 
-.content .circle-button {
+.content > .circle-button {
     display:inline;
     margin: 10px;
-    padding: 6px 8.5px 6px 8.5px;
+    padding: 6px 8px;
     font-size: 30px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
