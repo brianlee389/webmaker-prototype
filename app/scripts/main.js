@@ -24,8 +24,11 @@ $(function() {
     // a lot more abstractions can be made, but this is a prototype
     // so I didn't care
     $(".create").click(function() {
+        // retrieve value from select tag
         var selectVal = $(".select-tags").val();
-        var innerdiv = $('<div></div>').addClass('dd-handle mobile-li');
+        
+        var handlediv = $('<div></div>').addClass('dd-handle dd3-handle');
+        var innerdiv = $('<div></div>').addClass('dd3-content mobile-li');
         
         var spanleft = $('<span></span>').addClass('name-tag').text(getTag(parseInt(selectVal)));
         
@@ -44,8 +47,12 @@ $(function() {
         expandableContent.append(buttonText);
         
         var newid = $('.dd-item').size() + 1;
-        var litag = $('<li></li>').addClass("dd-item").attr("data-id", newid).append(innerdiv);
-        litag.append(expandableContent);
+        var litag = $('<li></li>').addClass("dd-item dd3-item").attr("data-id", newid);
+        
+        // adding the 3 divs into the dd-item
+        litag.append(handlediv)
+            .append(innerdiv)
+            .append(expandableContent);
         
         // sample attributes
         litag.attr("data-ref", "http://www.google.com");
