@@ -46,8 +46,8 @@ body{
     list-style-type: none;
     font-size: 1.4em;
     height: 36px;
-    margin:3px;
-    margin-bottom: 5px;
+    /*margin:3px;
+    margin-bottom: 5px;*/
     padding: 7px; 
     text-align: center;
     /*border: 2px solid lightgray;
@@ -133,7 +133,7 @@ body{
     display:none;
 }
 
-.dd-handle {
+.name-tag {
     height:100%;
     width: 70%;
     float:left;
