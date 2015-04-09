@@ -25,9 +25,9 @@ $(function() {
     // so I didn't care
     $(".create").click(function() {
         var selectVal = $(".select-tags").val();
-        var innerdiv = $('<div></div>').addClass('mobile-li');
+        var innerdiv = $('<div></div>').addClass('dd-handle mobile-li');
         
-        var spanleft = $('<span></span>').addClass('dd-handle').text(getTag(parseInt(selectVal)));
+        var spanleft = $('<span></span>').addClass('name-tag').text(getTag(parseInt(selectVal)));
         
         var spanright = $('<span></span>').addClass('edit-tag').text('Edit');
         
@@ -107,21 +107,20 @@ $(function() {
         function renderList(addto, additem) {
             var childitems = additem.children(".dd-item");
             var listsize = childitems.length;
-            console.log("Add: " + addto);
-            console.log(childitems);
+            
             for(var i = 0; i < listsize; i++) {
                 var item = childitems[i];
                 
                 //create the child tag from the data
                 var createdtag = createPreviewTag($(item));
 
-                // recursively visit each dd-item tag in the list
-                var innerlist = $(item).find(".dd-list").first();
+                // recursively visit each dd-item tag in the list if it exists
+                var innerlist = $(item).children(".dd-list");
                 if(innerlist.length > 0) {
                     renderList(createdtag, innerlist);
                 }
-                // add the additem's children to the created tag before the forloop
-                console.log("appended");
+                
+                // add the item to the parent tag
                 addto.append(createdtag);
             }      
         } // end renderList function
