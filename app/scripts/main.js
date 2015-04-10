@@ -29,29 +29,13 @@ $(function() {
     $('.modal .close').on('click', function(e){
         e.preventDefault();
         $.modal().close();
-        $.find(".selected-edit-text").first().removeClass("selected-edit-text");
+        $().find(".selected-edit-text").first().removeClass("selected-edit-text");
     });
     
     // open modal event
     $(".add-tag-button").click(function() {
         $('.modal.create-tag').modal().open();
     });
-    
-    /* 
-    This event refers to editing the text in the tag
-    */
-    function setEditTextButton() {
-        $('.modal.insert-text .close').on('click', function(e){
-            e.preventDefault();
-            $.modal().close();
-        });
-        
-        $(".circle-button.fi-pencil").click(function() {
-            var dditem = $(this).addClass("selected-edit-text");
-            
-            $('.modal.insert-text').modal().open();
-        });    
-    }
     
     // TODO: remove this when automatic re-rendering
     // is added to this prototype
@@ -64,6 +48,11 @@ $(function() {
     $(".modal.create-tag .button").click(function() {
         // retrieve value from select tag
         var selectVal = parseInt($('.select-tags').val());
+        
+        /* 
+        TODO: Maybe this can be put into a separate function.
+        Creating a .dd-item tag
+        */
         var handlediv = createTag(tagEnum.DIV, 'dd-handle dd3-handle');
         var innerdiv = createTag(tagEnum.DIV, 'dd3-content mobile-li');
         var nameTag = createTag(tagEnum.SPAN, 'name-tag').text(getTag(selectVal));
@@ -106,35 +95,62 @@ $(function() {
         
         ddlist.append(litag);
         
+        /* Creating a .dd-item tag code ends */
+        
         // setup the simpleexpand
         $(editIcon).simpleexpand();
        
         // reset the event handler for editing link
-        /*$(".circle-button.fi-pencil").click(function() {
-            
-            var dditem = $(this).parent("dd-item").first().addClass("selected-edit-text");
-            console.log(dditem);
-            $('.modal.insert-text').modal().open();
-        });
-        */
-        
         setEditTextButton();
     });
     
     // TODO: rendering the text
     // insert text event
-    $(".modal.insert-text .button").click(function() {
+    /*$(".modal.insert-text .button").click(function() {
         var value = $(this).parent().find("input").first().val();
         
         var selecteditem = $().find(".selected-edit-text");
+        
         selecteditem.closest(".dd-item").attr("data-text", value);
         selecteditem.removeClass("selected-edit-text");
         
         renderHtml();
+        $().parent('.modal').modal().close();
+    });*/
+    
+    //submit button
+    $('.modal.insert-text').on('click', '.button', function() {
+        var value = $(this).parent().find("input").first().val();
+        
+        var selecteditem = $(".selected-edit-text");
+        
+        selecteditem.closest(".dd-item").attr("data-text", value);
+        selecteditem.removeClass("selected-edit-text");
+        
+        renderHtml();
+        $().parent('.modal').modal().close();
+    });
+    
+    $('.modal.insert-text .close').on('click', function(e){
+        e.preventDefault();
         $.modal().close();
     });
     
+    /* Event Handler Helpers*/
+    /* 
+    This event refers to editing the text in the tag
+    */
+    function setEditTextButton() {
+        $(".circle-button.fi-pencil").click(function() {
+            var dditem = $(this).addClass("selected-edit-text");
+            
+            $('.modal.insert-text').modal().open();
+        });    
+    }
+    
     /* End Event Handlers */
+    
+    
     
     /* Start Helper Function definition */
     function getTag(tagnum) {
@@ -189,6 +205,19 @@ $(function() {
         createdtag.text(tagtext);
         
         return createdtag;
+    }
+    
+    function retrieveMaxIdValue() {
+        var items = $(".dd-item");
+        var itemlength = items.length;
+        var maxVal = items[0].attr("data-id");
+        for(var i = 1; i < itemlength; i++) {
+            var currVal = items[i].attr("data-id");
+            if(currVal > maxVal) {
+                maxVal = currVal;
+            }
+        }
+        return maxVal
     }
     
     /* Rendering the preview */
