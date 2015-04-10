@@ -5,7 +5,7 @@ $(function() {
     $(".select-tags").selectOrDie({
         placeholder: "Select a HTML tag"
     });
-    
+   
     // render the html from the items in tag with clas dd to preview
     renderHtml();
     setEditTextButton();
@@ -28,13 +28,13 @@ $(function() {
     // wire close button for modal
     $('.modal .close').on('click', function(e){
         e.preventDefault();
-        $.modal().close();
+        $.modal({cloning: false}).close();
         $().find(".selected-edit-text").first().removeClass("selected-edit-text");
     });
     
     // open modal event
     $(".add-tag-button").click(function() {
-        $('.modal.create-tag').modal().open();
+        $('.modal.create-tag').modal({cloning: false}).open();
     });
     
     // TODO: remove this when automatic re-rendering
@@ -104,36 +104,18 @@ $(function() {
         setEditTextButton();
     });
     
-    // TODO: rendering the text
-    // insert text event
-    /*$(".modal.insert-text .button").click(function() {
-        var value = $(this).parent().find("input").first().val();
-        
-        var selecteditem = $().find(".selected-edit-text");
-        
-        selecteditem.closest(".dd-item").attr("data-text", value);
-        selecteditem.removeClass("selected-edit-text");
-        
-        renderHtml();
-        $().parent('.modal').modal().close();
-    });*/
-    
-    //submit button
+    // Modal Submit button handler
     $('.modal.insert-text').on('click', '.button', function() {
-        var value = $(this).parent().find("input").first().val();
+        var textinput = $(this).parent().find("input").first();
         
         var selecteditem = $(".selected-edit-text");
         
-        selecteditem.closest(".dd-item").attr("data-text", value);
+        selecteditem.closest(".dd-item").attr("data-text", textinput.val());
         selecteditem.removeClass("selected-edit-text");
         
         renderHtml();
-        $().parent('.modal').modal().close();
-    });
-    
-    $('.modal.insert-text .close').on('click', function(e){
-        e.preventDefault();
-        $.modal().close();
+        textinput.val("");
+        $(this).parent('.modal.insert-text').modal({cloning: false}).close();
     });
     
     /* Event Handler Helpers*/
@@ -144,14 +126,12 @@ $(function() {
         $(".circle-button.fi-pencil").click(function() {
             var dditem = $(this).addClass("selected-edit-text");
             
-            $('.modal.insert-text').modal().open();
+            $('.modal.insert-text').modal({cloning: false}).open();
         });    
     }
     
     /* End Event Handlers */
-    
-    
-    
+       
     /* Start Helper Function definition */
     function getTag(tagnum) {
         switch(tagnum) {

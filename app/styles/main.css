@@ -7,7 +7,7 @@ body{
 .add-tag-button {
     position: absolute;
     bottom:30px;
-    right:30px;    
+    right:100px;    
 }
 
 .remove-tag-button {
