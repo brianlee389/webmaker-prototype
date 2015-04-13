@@ -18,6 +18,22 @@
     list-style: none; 
 }
 .dd-list .dd-list { padding-left: 30px; }
+
+.dd-list .dd-list .dd3-content, 
+.dd-list .dd-list .content { 
+    background-color: #33FFFF; 
+}
+.dd-list .dd-list .dd-list .dd3-content, 
+.dd-list .dd-list .dd-list .content 
+{ 
+    background-color: #E5CCFF; 
+}
+
+.dd-list .dd-list .dd-list .dd-list .dd3-content,
+.dd-list .dd-list .dd-list .dd-list .content {
+    background-color: #CCFFE6;
+}
+
 .dd-collapsed .dd-list { display: none; }
 
 .dd-item {
