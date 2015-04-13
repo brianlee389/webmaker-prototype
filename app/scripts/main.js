@@ -28,8 +28,13 @@ $(function() {
     // wire close button for modal
     $('.modal .close').on('click', function(e){
         e.preventDefault();
-        $.modal({cloning: false}).close();
-        $().find(".selected-edit-text").first().removeClass("selected-edit-text");
+        $.modal(
+            {
+                cloning: false, 
+                onClose: function() {
+                    $().find(".selected-edit-text").first().removeClass("selected-edit-text");
+                }
+            }).close();
     });
     
     // open modal event
@@ -102,6 +107,8 @@ $(function() {
        
         // reset the event handler for editing link
         setEditTextButton();
+        // re-render the html page if a new item is added
+        renderHtml();
     });
     
     // Modal Submit button handler
@@ -115,7 +122,18 @@ $(function() {
         
         renderHtml();
         textinput.val("");
-        $(this).parent('.modal.insert-text').modal({cloning: false}).close();
+        $(this).parent('.modal.insert-text').modal(
+            {
+                cloning: false, 
+                onClose: function() {
+                    $().find(".selected-edit-text").first().removeClass("selected-edit-text");
+                }
+            }).close();
+    });
+    
+    // if items are reordered
+    $('.dd').on('change', function() {
+        renderHtml();
     });
     
     /* Event Handler Helpers*/

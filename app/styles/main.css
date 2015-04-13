@@ -80,8 +80,8 @@ body{
     text-align: center;
     background-color: white;
     height:325px;
-    overflow-y: scroll;
-    width: 1246px;
+    overflow: scroll;
+    width: 100%;
     border: 1px dotted black;
     margin-top: 3px;
 }
