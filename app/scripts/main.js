@@ -26,7 +26,7 @@ $(function() {
     
     /* Create event handlers */
     // wire close button for modal
-    $('.modal .close').on('click', function(e){
+    $('.modal.insert-text .close').on('click', function(e){
         e.preventDefault();
         $.modal(
             {
@@ -35,6 +35,13 @@ $(function() {
                     $().find(".selected-edit-text").first().removeClass("selected-edit-text");
                 }
             }).close();
+    });
+    
+    $('.modal.create-tag .close').on('click', function(e){
+        e.preventDefault();
+        $.modal({
+                cloning: false
+                }).close();
     });
     
     // open modal event
