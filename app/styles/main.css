@@ -1,0 +1,154 @@
+body{
+    overflow: hidden;
+    margin: 8px;
+    padding: 8px;
+}
+
+.add-tag-button {
+    position: absolute;
+    bottom:30px;
+    right:100px;    
+}
+
+.remove-tag-button {
+    position: absolute;
+    bottom:30px;
+    left:30px;
+}
+
+.button-text {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.circle-button {
+    text-align: center;
+    background-color: lightgrey;
+    border-radius: 50px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.circle-button:active {
+    background-color: #BCBCBC;
+}
+
+.mobile-li {
+    color: gray;
+    background-color: white;
+    list-style-type: none;
+    font-size: 1.4em;
+    height: 36px;
+    padding: 7px; 
+    text-align: center;
+}
+
+.mobile-li-close {
+    height: 18px;
+}
+
+.hide-scroll {
+    overflow: hidden;
+    width: 100%;
+/*    height: 100%;*/
+}
+
+.scrollable {
+    width: 100%;
+    padding-right: 20px;
+    height: 325px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.page {
+    background-color: lightgrey;
+    padding: 5px;
+    height: 700px;
+    width: 100%;
+}
+
+.preview {
+    text-align: center;
+    background-color: white;
+    height:325px;
+    overflow: scroll;
+    width: 100%;
+    border: 1px dotted black;
+    margin-top: 3px;
+}
+
+.preview-image {
+    width: 50%;
+    height: 300px;
+}
+
+.modal {
+    background: white;
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.modal .close {
+    float: right;
+    text-decoration: none;
+    font-size: 40px;
+    cursor: pointer;
+    color:black;
+}
+
+.select-tags {
+    margin-bottom: 5px;
+}
+
+.button {
+    padding: 8px;
+    font-size: 16px;
+    color:white;
+    background-color: lightgrey;
+    border:none;
+    text-shadow: 0px 0px 1px lightgrey;
+    outline: none;
+}
+.button:active {
+    background-color:darkgrey;
+}
+
+.edit-tag {
+    float:right;
+    margin-right: 20px;
+    height:100%;
+    cursor:pointer;
+}
+
+.name-tag {
+    height:100%;
+    width: 70%;
+    float:left;
+}
+
+.content {
+    display:none;
+}
+
+.content > .circle-button {
+    display:inline;
+    margin: 10px;
+    padding: 6px 8px;
+    font-size: 30px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

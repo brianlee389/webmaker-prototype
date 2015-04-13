@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>html_prototype</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="scripts/jquery.nestable.js"></script>
+    <script type="text/javascript" src="scripts/jquery.the-modal.js"></script>
+    <script type="text/javascript" src="scripts/selectordie.js"></script>
+    <script type="text/javascript" src="scripts/simple-expand.min.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/the-modal.css">
+    <link rel="stylesheet" type="text/css" href="styles/selectordie.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/jquery-nestable.css">
+    <link rel="stylesheet" href="styles/foundation-icons.css">
+  </head>
+  <body>
+      <div class="page">
+        <div class="page-title mobile-li">Image Styles</div>
+        <div class="preview hide-scroll">
+            <div class="scrollable"></div>                
+        </div>
+        <div class="dd hide-scroll">
+            <div class="scrollable">
+                <ol class="dd-list">
+                    <li class="dd-item dd3-item" data-id="1" data-tag="1" data-ref="https://media.licdn.com/mpr/mpr/p/4/005/05b/0ad/17ef3d8.jpg" data-text="sampletext">
+                        <div class="dd-handle dd3-handle">
+                        </div>
+                        <div class="dd3-content mobile-li">
+                            <span class="name-tag">&lt; img &gt;</span>
+                            <i class="edit-tag fi-page-edit"></i>
+                        </div>
+                        <div class="content mobile-li">
+                            <!--<div class="circle-button">
+                                <i class="large fi-link"></i>
+                            </div>
+                            <div class="circle-button">
+                                <i class="large fi-pencil"></i>
+                            </div>-->
+                            <div class="circle-button fi-link large">
+                            </div>
+                            <div class="circle-button fi-pencil large">
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="add-tag-button circle-button">
+            <span class="button-text">+</span>
+        </div>
+        <!--<div class="remove-tag-button circle-button">
+            <span class="button-text">-</span>
+        </div>-->
+      </div>
+      <div class="modal create-tag" style="display: none">
+        <a href="#" class="close">×</a>
+        <h2>HTML Tags</h2>
+        <select class="select-tags">
+          <option value="0">a</option>
+          <option value="1">img</option>
+          <option value="2">p</option>
+          <option value="3">div</option>
+          <option value="4">h1</option>
+        </select>
+        <p>
+            <button class="button">Create</button>
+        </p>
+      </div>
+      <div class="modal insert-text" style="display: none">
+        <a href="#" class="close">×</a>
+        <h2>Insert text into tag</h2>
+        <p>
+            <input type="text" name="edit-text"></input>
+            <button class="button">Submit</button>
+        </p>
+      </div>
+      
+    </body>
+</html>
